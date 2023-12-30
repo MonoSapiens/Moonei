@@ -18,7 +18,7 @@ import {
   import { UserDTO } from './dto/user.dto';
   
   @ApiTags('Microservicio de usuarios (microservice-users)')
-  /* @UseGuards(JwtAuthGuard) */
+  @UseGuards(JwtAuthGuard)
   @Controller('api/user')
   export class UserController {
   

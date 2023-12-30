@@ -12,6 +12,6 @@ async function bootstrap() {
     },
   });
   await app.listen();
-  console.log('Microservicio de proyectos corriendo');
+  console.log('Moonei -> Microservice project -> Listening');
 }
 bootstrap();

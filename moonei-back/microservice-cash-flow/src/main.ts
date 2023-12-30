@@ -13,6 +13,6 @@ async function bootstrap() {
   });
 
   await app.listen();
-  console.log('Microservice cash flow -> listening');
+  console.log('Moonei -> Microservice cash flow -> Listening');
 }
 bootstrap();

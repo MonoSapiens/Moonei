@@ -8,65 +8,46 @@ export class CashFlowController {
 
     constructor(private readonly cashFlowService: CashFlowService) { }
 
-    /* 
-    Modelo estructural de datos:
-  
-      1. IProject:    Interface
-  
-      2. ProjectMSG:  Mensajeria por RabbitMQ
-  
-      3. projectDTO:  ProjectDTO: Objeto de transferencia de datos 
-  
-    */
-  
-    // METODOS CRUD para proyectos
-  
+    // METODOS CRUD para cash flow 
+
     /*  
-    Método para crear un nueva proyecto a partir de un usuario. 
-    (se autoasigna como jefe de proyecto al usuario que crea el proyecto)
+    Método para crear un nueva cash flow  a partir de un usuario. 
+    (se autoasigna como jefe de cash flow  al usuario que crea el proyecto)
     */
     @MessagePattern(CashFlowMSG.CREATE)
     async create(@Payload() payload: any) {
-      return await this.cashFlowService.createCashFlow(payload);
+        return await this.cashFlowService.create(payload);
     }
-  
+
     /*  
-    Método para  obtener todos los proyectos
+    Método para  obtener todos los cash flow 
     */
     @MessagePattern(CashFlowMSG.FIND_ALL)
     async findAll() {
-      return await this.cashFlowService.findAll();
+        return await this.cashFlowService.findAll();
     }
-  
+
     /*  
-    Método para  obtener un proyecto a partir del id.
-    entrada: id del proyecto. 
-    salida: objeto del proyecto encontrada.  
+    Método para  obtener un cash flow a partir del id.
     */
     @MessagePattern(CashFlowMSG.FIND_ONE)
     async findOne(@Payload() id: string) {
-      return await this.cashFlowService.findOne(id);
+        return await this.cashFlowService.findOne(id);
     }
-  
+
     /*  
-    Método para actualizar un proyecto a partir del id.
-    entrada: id del proyecto y nuevos datos del proyecto. 
-    salida: objeto del proyecto actualizada.
+    Método para actualizar un cash flow a partir del id.
     */
     @MessagePattern(CashFlowMSG.UPDATE)
     async update(@Payload() payload: any) {
-      return await this.cashFlowService.update(payload.id, payload.projectDTO);
+        return await this.cashFlowService.update(payload.id, payload.cashFlowDTO);
     }
-  
+
     /*  
-    Método para borrar permanentemente un proyecto a partir del id.
-    entrada: id del proyecto.
-    salida: valor booleano de confirmación.
+    Método para borrar permanentemente un cash flow a partir del id.
     */
     @MessagePattern(CashFlowMSG.DELETE)
     async delete(@Payload() id: string) {
-      return await this.cashFlowService.delete(id);
+        return await this.cashFlowService.delete(id);
     }
-
-
 }

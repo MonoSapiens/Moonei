@@ -9,6 +9,7 @@ import { JwtService } from '@nestjs/jwt';
 import { JwtAuthGuard } from './guards/jwt-auth.guard';
 import { Observable } from 'rxjs';
 import { LoginDTO } from './dto/Login.dto';
+import { RegisterDTO } from './dto/Register.dto';
 
 @ApiTags('Autentificación (auth)')
 @Controller('api/auth')
@@ -52,9 +53,9 @@ export class AuthController {
    */
     @Post('signup')
     @ApiOperation({ summary: 'registra un usuario' })
-    async signUp(@Body() userDTO: UserDTO) {
-        console.log("solicitando crear el usuario: ", userDTO);
-        const isExist = await this._clientProxyUser.send(UserMSG.CREATE, userDTO).toPromise();
+    async signUp(@Body() registerDTO: RegisterDTO) {
+        console.log("solicitando crear el usuario: ", registerDTO);
+        const isExist = await this._clientProxyUser.send(UserMSG.CREATE, registerDTO).toPromise();
         if (isExist) {
             console.log("usuario creado: ", isExist);
             return { isExist };

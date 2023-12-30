@@ -12,4 +12,5 @@ export class ProjectDTO {
     @ApiProperty()
     @IsString()
     readonly description: string;
+
 }

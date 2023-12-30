@@ -37,6 +37,7 @@ export class CashFlowController {
     @Post('/create')
     @ApiOperation({ summary: 'Crear un cash flow' })
     async addProject(@Body() cashFlowDTO: CashFlowDTO, @Req() req: any) {
+        console.log("CREANDO cash flow");
         return await this._clientProxyCashFlow.send(CashFlowMSG.CREATE, cashFlowDTO);
     }
 

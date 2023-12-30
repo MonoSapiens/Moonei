@@ -1,6 +1,6 @@
 export enum RabbitMQ {
     GuestQueue = 'guests',
-    ProjectQueue = 'projects'
+    ProjectQueue = 'project'
   }
   
 

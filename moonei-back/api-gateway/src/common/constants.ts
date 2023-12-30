@@ -1,13 +1,13 @@
 export enum RabbitMQ {
-  UserQueue = 'users',
-  ProjectQueue = 'projects',
-  CashFlowQueue = 'cash-flows',
-  NotificationQueue = 'notifications',
-  ReminderQueue = 'reminders',
-  ChatQueue = 'chats',
-  HomeQueue = 'homes',
-  CategoryQueue = 'categories',
-  InvestmentQueue = 'investments'
+  UserQueue = 'user',
+  ProjectQueue = 'project',
+  CashFlowQueue = 'cash-flow',
+  NotificationQueue = 'notification',
+  ReminderQueue = 'reminder',
+  ChatQueue = 'chat',
+  HomeQueue = 'home',
+  CategoryQueue = 'category',
+  InvestmentQueue = 'investment'
 }
 
 export enum UserMSG {
@@ -31,11 +31,11 @@ export enum ProjectMSG {
 }
 
 export enum CashFlowMSG {
-  CREATE = 'CREATE_CASH-FLOW',
-  FIND_ALL = 'FIND_CASH-FLOW',
-  FIND_ONE = 'FIND_CASH-FLOW',
-  UPDATE = 'UPDATE_CASH-FLOW',
-  DELETE = 'DELETE_CASH-FLOW',
+  CREATE = 'CREATE_CASH_FLOW',
+  FIND_ALL = 'FIND_CASH_FLOW',
+  FIND_ONE = 'FIND_CASH_FLOW',
+  UPDATE = 'UPDATE_CASH_FLOW',
+  DELETE = 'DELETE_CASH_FLOW',
 }
 
 export enum ChatMSG {

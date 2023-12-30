@@ -1,0 +1,74 @@
+version: '3.7'
+
+services:
+
+  dmeetflow_api-gateway:
+    image: fabianbello/dmeetflow_api-gateway:v2.0.6
+    container_name: dmeetflow_api-gateway
+    build:
+      context: ./api-gateway
+      dockerfile: Dockerfile
+    env_file: .env
+    ports:
+      - 80:3000
+      - 82:82
+    depends_on:
+      - rabbitmq
+    restart: always
+    networks:
+      - ms_meetflow
+
+  dmeetflow_microservice-elements:
+    image: fabianbello/dmeetflow_microservice-elements:v1.0.1
+    container_name: dmeetflow_microservice-elements
+    build:
+      context: ./microservice-elements
+      dockerfile: Dockerfile
+    env_file: .env
+    depends_on:
+      - rabbitmq
+    restart: always
+    networks:
+      - ms_meetflow
+
+  dmeetflow_ms-users-mongodb:
+    image: fabianbello/dmeetflow_ms-users-mongodb:v1.0.1
+    container_name: dmeetflow_ms-users-mongodb
+    build:
+      context: ./ms-users
+      dockerfile: Dockerfile
+    env_file: .env
+    depends_on:
+      - rabbitmq
+    restart: always
+    networks:
+      - ms_meetflow
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: rmq
+    expose:
+      - 5672
+      - 15672
+    restart: always
+    networks:
+      - ms_meetflow
+
+  mysql:
+    image: mysql:latest
+    container_name: mysql-microservice-users
+    volumes:
+      - ./sql-data/db:/var/lib/mysql22
+    ports:
+      - 3306:3306
+    hostname: 'hostdbusers'
+    environment:
+      MYSQL_DATABASE: 'dbusers'
+      MYSQL_USER: 'fabian'
+      MYSQL_PASSWORD: 'admin'
+      MYSQL_ROOT_PASSWORD: 'admin'
+    networks:
+      - ms_meetflow
+
+networks:
+  ms_meetflow:
